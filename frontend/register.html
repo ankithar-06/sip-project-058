@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | MSME Connect AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            <span class="logo-icon">M</span>
+            <span>MSME <strong>Connect</strong></span>
+        </div>
+
+        <a href="index.html" class="nav-login">
+            ← Back to Home
+        </a>
+
+    </nav>
+
+
+    <!-- REGISTER SECTION -->
+    <section class="auth-section">
+
+        <div class="auth-container">
+
+            <!-- LEFT SIDE -->
+            <div class="auth-info">
+
+                <div class="auth-badge">
+                    <span>✦</span>
+                    AI-Powered Business Growth
+                </div>
+
+                <h1>
+                    Take your business
+                    <span>to the next level.</span>
+                </h1>
+
+                <p>
+                    Create your MSME digital identity, discover new markets,
+                    generate marketing content and find business opportunities
+                    — all in one platform.
+                </p>
+
+
+                <!-- BENEFITS -->
+
+                <div class="auth-benefits">
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✦</div>
+
+                        <div>
+                            <h3>Build your digital identity</h3>
+                            <p>Present your business professionally online.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">AI</div>
+
+                        <div>
+                            <h3>Grow with AI</h3>
+                            <p>Generate marketing content in seconds.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">↗</div>
+
+                        <div>
+                            <h3>Reach new markets</h3>
+                            <p>Connect with buyers, retailers and businesses.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+            <div class="auth-card">
+
+                <div class="auth-card-header">
+
+                    <h2>Create your account</h2>
+
+                    <p>
+                        Start building your digital business profile.
+                    </p>
+
+                </div>
+
+
+                <form id="registerForm">
+
+
+                    <!-- OWNER NAME -->
+
+                    <div class="form-group">
+
+                        <label for="ownerName">
+                            Owner / Representative Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="ownerName"
+                            name="ownerName"
+                            placeholder="Enter your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- BUSINESS NAME -->
+
+                    <div class="form-group">
+
+                        <label for="businessName">
+                            Business Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="businessName"
+                            name="businessName"
+                            placeholder="e.g. Lakshmi Foods"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- CATEGORY -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="category">
+                                Business Category
+                            </label>
+
+                            <select id="category" name="category" required>
+
+                                <option value="">
+                                    Select category
+                                </option>
+
+                                <option value="food">
+                                    Food & Beverages
+                                </option>
+
+                                <option value="textile">
+                                    Textiles & Clothing
+                                </option>
+
+                                <option value="handicraft">
+                                    Handicrafts
+                                </option>
+
+                                <option value="manufacturing">
+                                    Manufacturing
+                                </option>
+
+                                <option value="retail">
+                                    Retail
+                                </option>
+
+                                <option value="agriculture">
+                                    Agriculture & Allied
+                                </option>
+
+                                <option value="services">
+                                    Services
+                                </option>
+
+                                <option value="technology">
+                                    Technology
+                                </option>
+
+                                <option value="other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- LOCATION -->
+
+                        <div class="form-group">
+
+                            <label for="location">
+                                Location
+                            </label>
+
+                            <input
+                                type="text"
+                                id="location"
+                                name="location"
+                                placeholder="e.g. Bengaluru"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter phone number"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- UDYAM -->
+
+                    <div class="form-group">
+
+                        <label for="udyam">
+                            Udyam Registration Number
+                            <span class="optional">(Optional)</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="udyam"
+                            name="udyam"
+                            placeholder="Enter Udyam number if available"
+                        >
+
+                        <small>
+                            Don't have one? You can still create your profile.
+                        </small>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Create password"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="confirmPassword">
+                                Confirm Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Confirm password"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TERMS -->
+
+                    <div class="terms">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            required
+                        >
+
+                        <label for="terms">
+                            I agree to the platform's terms and conditions.
+                        </label>
+
+                    </div>
+
+
+                    <!-- REGISTER BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="auth-btn"
+                    >
+                        Create MSME Account
+                        <span>→</span>
+                    </button>
+
+
+                    <!-- LOGIN -->
+
+                    <p class="auth-switch">
+
+                        Already have an account?
+
+                        <a href="login.html">
+                            Login
+                        </a>
+
+                    </p>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="auth-footer">
+
+        <p>
+            © 2026 MSME Connect AI · Empowering local businesses to grow.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        document
+            .getElementById("registerForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                const password =
+                    document.getElementById("password").value;
+
+                const confirmPassword =
+                    document.getElementById("confirmPassword").value;
+
+
+                if (password !== confirmPassword) {
+
+                    alert("Passwords do not match.");
+
+                    return;
+
+                }
+
+
+                alert(
+                    "Registration form submitted successfully!"
+                );
+
+            });
+
+    </script>
+
+</body>
+</html>

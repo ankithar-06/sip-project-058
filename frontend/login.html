@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | MSME Connect AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <span class="logo-icon">M</span>
+
+        <span>
+            MSME <strong>Connect</strong>
+        </span>
+
+    </div>
+
+
+    <a href="index.html" class="nav-login">
+        ← Back to Home
+    </a>
+
+</nav>
+
+
+
+<!-- LOGIN SECTION -->
+
+<section class="auth-section">
+
+    <div class="auth-container">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="auth-info">
+
+            <div class="auth-badge">
+
+                <span>✦</span>
+
+                Welcome Back
+
+            </div>
+
+
+            <h1>
+
+                Grow your business
+                <span>with intelligence.</span>
+
+            </h1>
+
+
+            <p>
+
+                Access your MSME dashboard, discover new opportunities,
+                connect with businesses and use AI to grow your digital presence.
+
+            </p>
+
+
+
+            <div class="auth-benefits">
+
+
+                <div class="benefit-item">
+
+                    <div class="benefit-icon">
+                        AI
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            AI Business Assistant
+                        </h3>
+
+                        <p>
+                            Get intelligent recommendations for your business.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="benefit-item">
+
+                    <div class="benefit-icon">
+                        ↗
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Discover Opportunities
+                        </h3>
+
+                        <p>
+                            Find relevant markets, schemes and connections.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="benefit-item">
+
+                    <div class="benefit-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Track Your Growth
+                        </h3>
+
+                        <p>
+                            Monitor your digital business growth from one dashboard.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LOGIN CARD -->
+
+        <div class="auth-card">
+
+
+            <div class="auth-card-header">
+
+                <h2>
+                    Welcome back
+                </h2>
+
+                <p>
+                    Login to your MSME Connect account.
+                </p>
+
+            </div>
+
+
+
+            <form id="loginForm">
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="you@example.com"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- REMEMBER / FORGOT -->
+
+                <div
+                    style="
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        margin-bottom:20px;
+                    "
+                >
+
+                    <label
+                        style="
+                            display:flex;
+                            align-items:center;
+                            gap:7px;
+                            color:var(--text-muted);
+                            font-size:12px;
+                        "
+                    >
+
+                        <input
+                            type="checkbox"
+                            style="accent-color:var(--blue);"
+                        >
+
+                        Remember me
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        style="
+                            color:var(--blue-light);
+                            font-size:12px;
+                            text-decoration:none;
+                        "
+                    >
+                        Forgot password?
+                    </a>
+
+                </div>
+
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="auth-btn"
+                >
+
+                    Login to Dashboard
+
+                    <span>→</span>
+
+                </button>
+
+
+
+                <!-- REGISTER -->
+
+                <p class="auth-switch">
+
+                    Don't have an account?
+
+                    <a href="register.html">
+                        Create Account
+                    </a>
+
+                </p>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer class="auth-footer">
+
+    <p>
+        © 2026 MSME Connect AI · Empowering local businesses to grow.
+    </p>
+
+</footer>
+
+
+
+<script>
+
+document
+    .getElementById("loginForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const email =
+            document.getElementById("email").value;
+
+        const password =
+            document.getElementById("password").value;
+
+
+        if (!email || !password) {
+
+            alert("Please enter your email and password.");
+
+            return;
+
+        }
+
+
+        /*
+            TEMPORARY LOGIN
+
+            Backend authentication will be
+            connected later.
+        */
+
+        alert("Login successful!");
+
+
+        // Temporary dashboard navigation
+
+        window.location.href = "dashboard.html";
+
+    });
+
+</script>
+
+
+</body>
+</html>

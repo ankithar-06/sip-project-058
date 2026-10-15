@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Marketing Assistant | MSME Connect AI</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ================================
+           MARKETING PAGE
+        ================================= */
+
+        .marketing-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 85% 10%, rgba(59,130,246,0.12), transparent 30%),
+                #08090d;
+            padding-bottom: 60px;
+        }
+
+        /* Navbar */
+
+        .marketing-nav {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: rgba(8,9,13,0.85);
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .marketing-logo {
+            color: #fff;
+            font-size: 21px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .marketing-logo span {
+            color: #3b82f6;
+        }
+
+        .back-dashboard {
+            color: #b5bac5;
+            text-decoration: none;
+            padding: 10px 18px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .back-dashboard:hover {
+            color: white;
+            border-color: #3b82f6;
+            background: rgba(59,130,246,0.08);
+        }
+
+        /* Main */
+
+        .marketing-container {
+            width: min(1150px, 92%);
+            margin: auto;
+            padding-top: 55px;
+        }
+
+        .page-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 50px;
+            background: rgba(59,130,246,0.1);
+            border: 1px solid rgba(59,130,246,0.25);
+            color: #60a5fa;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .page-heading h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            color: white;
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+
+        .page-heading h1 span {
+            color: #3b82f6;
+        }
+
+        .page-heading p {
+            color: #8f96a3;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Generator */
+
+        .generator-card {
+            background: rgba(17,19,24,0.92);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            margin-bottom: 35px;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .card-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: rgba(59,130,246,0.12);
+            font-size: 20px;
+        }
+
+        .card-title h2 {
+            color: white;
+            font-size: 21px;
+            margin: 0;
+        }
+
+        .card-title p {
+            color: #777d89;
+            font-size: 13px;
+            margin: 4px 0 0;
+        }
+
+        /* Form */
+
+        .marketing-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            color: #d8dbe2;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: #0d0f14;
+            color: white;
+            outline: none;
+            font-family: inherit;
+            transition: 0.25s;
+        }
+
+        .form-group textarea {
+            min-height: 105px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.08);
+        }
+
+        .form-group select option {
+            background: #111318;
+            color: white;
+        }
+
+        .generate-btn {
+            grid-column: 1 / -1;
+            border: none;
+            padding: 15px 22px;
+            border-radius: 11px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 5px;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(37,99,235,0.3);
+        }
+
+        /* Results */
+
+        .results-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0 20px;
+        }
+
+        .results-heading h2 {
+            color: white;
+            margin: 0;
+            font-size: 25px;
+        }
+
+        .ai-status {
+            color: #4ade80;
+            font-size: 13px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .result-card {
+            background: #111318;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 17px;
+            padding: 23px;
+            transition: 0.3s;
+        }
+
+        .result-card:hover {
+            border-color: rgba(59,130,246,0.35);
+            transform: translateY(-3px);
+        }
+
+        .result-card.full {
+            grid-column: 1 / -1;
+        }
+
+        .result-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .result-title {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .result-title span {
+            font-size: 18px;
+        }
+
+        .copy-btn {
+            border: 1px solid rgba(255,255,255,0.1);
+            background: #0d0f14;
+            color: #b5bac5;
+            padding: 7px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: 0.2s;
+        }
+
+        .copy-btn:hover {
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .result-content {
+            color: #aeb4c0;
+            line-height: 1.7;
+            font-size: 14px;
+            white-space: pre-line;
+        }
+
+        .ideas-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .idea {
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: #0d0f14;
+            border: 1px solid rgba(255,255,255,0.06);
+            color: #b5bac5;
+        }
+
+        .idea strong {
+            color: #60a5fa;
+        }
+
+        /* Hidden */
+
+        #resultsSection {
+            display: none;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 700px) {
+
+            .marketing-nav {
+                padding: 0 4%;
+            }
+
+            .marketing-container {
+                width: 92%;
+                padding-top: 35px;
+            }
+
+            .marketing-form,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full,
+            .generate-btn,
+            .result-card.full {
+                grid-column: auto;
+            }
+
+            .generator-card {
+                padding: 20px;
+            }
+
+            .results-heading {
+                align-items: flex-start;
+                gap: 8px;
+                flex-direction: column;
+            }
+
+            .back-dashboard {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="marketing-page">
+
+    <!-- NAVBAR -->
+
+    <nav class="marketing-nav">
+
+        <a href="index.html" class="marketing-logo">
+            MSME <span>Connect</span> AI
+        </a>
+
+        <a href="dashboard.html" class="back-dashboard">
+            ← Dashboard
+        </a>
+
+    </nav>
+
+
+    <!-- MAIN -->
+
+    <main class="marketing-container">
+
+        <!-- PAGE HEADING -->
+
+        <section class="page-heading">
+
+            <div class="ai-badge">
+                ✦ AI POWERED MARKETING
+            </div>
+
+            <h1>
+                Turn your products into
+                <span>marketing content.</span>
+            </h1>
+
+            <p>
+                Generate professional product descriptions, social media
+                captions and promotional content designed to help your
+                business reach more customers.
+            </p>
+
+        </section>
+
+
+        <!-- GENERATOR -->
+
+        <section class="generator-card">
+
+            <div class="card-title">
+
+                <div class="card-icon">
+                    ✦
+                </div>
+
+                <div>
+                    <h2>AI Marketing Generator</h2>
+                    <p>Tell us about your product and let AI do the work.</p>
+                </div>
+
+            </div>
+
+
+            <form class="marketing-form" id="marketingForm">
+
+                <div class="form-group">
+
+                    <label>Product Name</label>
+
+                    <input
+                        type="text"
+                        id="productName"
+                        placeholder="Example: Homemade Millet Cookies"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Target Audience</label>
+
+                    <input
+                        type="text"
+                        id="targetAudience"
+                        placeholder="Example: Families, students, health-conscious customers"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Marketing Platform</label>
+
+                    <select id="platform">
+
+                        <option value="Instagram">Instagram</option>
+                        <option value="WhatsApp">WhatsApp</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="LinkedIn">LinkedIn</option>
+                        <option value="General">General Marketing</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Content Tone</label>
+
+                    <select id="tone">
+
+                        <option value="Professional">Professional</option>
+                        <option value="Friendly">Friendly</option>
+                        <option value="Premium">Premium</option>
+                        <option value="Creative">Creative</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>Product Benefits / Key Details</label>
+
+                    <textarea
+                        id="productDetails"
+                        placeholder="Example: Made with ragi and oats, no preservatives, handmade, suitable for children."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <button type="submit" class="generate-btn">
+                    ✦ Generate Marketing Content
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- RESULTS -->
+
+        <section id="resultsSection">
+
+            <div class="results-heading">
+
+                <h2>AI Generated Content</h2>
+
+                <span class="ai-status">
+                    ● AI content ready
+                </span>
+
+            </div>
+
+
+            <div class="results-grid">
+
+                <!-- PRODUCT DESCRIPTION -->
+
+                <div class="result-card">
+
+                    <div class="result-top">
+
+                        <div class="result-title">
+                            <span>📝</span>
+                            Product Description
+                        </div>
+
+                        <button
+                            class="copy-btn"
+                            onclick="copyContent('description')"
+                        >
+                            Copy
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="result-content"
+                        id="description"
+                    ></div>
+
+                </div>
+
+
+                <!-- SOCIAL CAPTION -->
+
+                <div class="result-card">
+
+                    <div class="result-top">
+
+                        <div class="result-title">
+                            <span>📱</span>
+                            Social Media Caption
+                        </div>
+
+                        <button
+                            class="copy-btn"
+                            onclick="copyContent('caption')"
+                        >
+                            Copy
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="result-content"
+                        id="caption"
+                    ></div>
+
+                </div>
+
+
+                <!-- PROMOTIONAL MESSAGE -->
+
+                <div class="result-card full">
+
+                    <div class="result-top">
+
+                        <div class="result-title">
+                            <span>📢</span>
+                            Promotional Message
+                        </div>
+
+                        <button
+                            class="copy-btn"
+                            onclick="copyContent('promotion')"
+                        >
+                            Copy
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="result-content"
+                        id="promotion"
+                    ></div>
+
+                </div>
+
+
+                <!-- MARKETING IDEAS -->
+
+                <div class="result-card full">
+
+                    <div class="result-top">
+
+                        <div class="result-title">
+                            <span>💡</span>
+                            AI Marketing Ideas
+                        </div>
+
+                    </div>
+
+                    <div class="ideas-list">
+
+                        <div class="idea" id="idea1"></div>
+
+                        <div class="idea" id="idea2"></div>
+
+                        <div class="idea" id="idea3"></div>
+
+                        <div class="idea" id="idea4"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    const form = document.getElementById("marketingForm");
+
+    form.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const product =
+            document.getElementById("productName").value.trim();
+
+        const audience =
+            document.getElementById("targetAudience").value.trim();
+
+        const platform =
+            document.getElementById("platform").value;
+
+        const tone =
+            document.getElementById("tone").value;
+
+        const details =
+            document.getElementById("productDetails").value.trim();
+
+
+        if (!product || !audience || !details) {
+
+            alert("Please fill in all required fields.");
+
+            return;
+        }
+
+
+        /* =========================
+           MOCK AI GENERATION
+        ========================= */
+
+        const description =
+
+            `${product} is crafted with quality and care for ${audience}. ` +
+            `Designed with a focus on reliability and customer satisfaction, ` +
+            `this product offers a simple and valuable choice for modern customers. ` +
+            `Key benefits include: ${details}. ` +
+            `Discover a product made to bring quality and value to everyday life.`;
+
+
+        const caption =
+
+            `✨ Meet ${product}!\n\n` +
+
+            `${details}\n\n` +
+
+            `Perfect for ${audience}. ` +
+            `Experience quality, care and value with a product made for you. ❤️\n\n` +
+
+            `#${product.replace(/\s+/g, "")} #MSME #MadeInIndia #LocalBusiness #QualityProducts`;
+
+
+        const promotion =
+
+            `Looking for something better for ${audience}?\n\n` +
+
+            `Introducing ${product} — a product created with quality, ` +
+            `care and real customer needs in mind.\n\n` +
+
+            `Why choose it?\n` +
+            `• ${details}\n` +
+            `• Quality-focused production\n` +
+            `• Made by a growing local business\n\n` +
+
+            `Connect with us today and discover ${product}.`;
+
+
+        document.getElementById("description").textContent =
+            description;
+
+        document.getElementById("caption").textContent =
+            caption;
+
+        document.getElementById("promotion").textContent =
+            promotion;
+
+
+        document.getElementById("idea1").innerHTML =
+            "<strong>01.</strong> Create a short product video showing how " +
+            product + " is made.";
+
+        document.getElementById("idea2").innerHTML =
+            "<strong>02.</strong> Share customer testimonials and real-use " +
+            "stories on " + platform + ".";
+
+        document.getElementById("idea3").innerHTML =
+            "<strong>03.</strong> Create a limited-time offer targeted at " +
+            audience + ".";
+
+        document.getElementById("idea4").innerHTML =
+            "<strong>04.</strong> Use a consistent " + tone.toLowerCase() +
+            " brand voice across your social media content.";
+
+
+        const results =
+            document.getElementById("resultsSection");
+
+        results.style.display = "block";
+
+        results.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    });
+
+
+    /* =========================
+       COPY CONTENT
+    ========================= */
+
+    function copyContent(id) {
+
+        const content =
+            document.getElementById(id).textContent;
+
+        navigator.clipboard.writeText(content)
+            .then(() => {
+
+                alert("Content copied successfully!");
+
+            })
+            .catch(() => {
+
+                alert("Unable to copy content.");
+
+            });
+
+    }
+
+</script>
+
+</body>
+</html>

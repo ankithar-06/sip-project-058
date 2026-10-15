@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Business | MSME Connect AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .profile-page {
+            min-height: 100vh;
+            background: var(--bg);
+        }
+
+        .profile-navbar {
+            height: 75px;
+            padding: 0 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-bottom: 1px solid var(--border);
+            background: #08090d;
+        }
+
+        .profile-container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 40px 25px 70px;
+        }
+
+        .page-heading {
+            margin-bottom: 30px;
+        }
+
+        .page-heading h1 {
+            font-family: "Manrope", sans-serif;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 25px;
+        }
+
+        /* PROFILE PREVIEW */
+
+        .profile-preview {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 25px;
+            height: fit-content;
+        }
+
+        .business-avatar {
+            width: 90px;
+            height: 90px;
+
+            margin: 0 auto 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 20px;
+
+            background: linear-gradient(
+                135deg,
+                var(--blue),
+                var(--blue-dark)
+            );
+
+            color: white;
+
+            font-family: "Manrope", sans-serif;
+            font-size: 30px;
+            font-weight: 800;
+        }
+
+        .profile-preview h2 {
+            text-align: center;
+            font-family: "Manrope", sans-serif;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .business-category {
+            display: block;
+            text-align: center;
+            color: var(--blue-light);
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .verification {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+
+            padding: 8px;
+
+            border-radius: 8px;
+
+            background: rgba(74, 222, 128, 0.07);
+
+            color: var(--success);
+
+            font-size: 11px;
+        }
+
+        .profile-completion {
+            margin-top: 25px;
+        }
+
+        .completion-header {
+            display: flex;
+            justify-content: space-between;
+
+            margin-bottom: 8px;
+
+            font-size: 12px;
+        }
+
+        .completion-header span:last-child {
+            color: var(--blue-light);
+            font-weight: 700;
+        }
+
+        .completion-bar {
+            height: 7px;
+            background: #22252e;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .completion-bar span {
+            display: block;
+            width: 72%;
+            height: 100%;
+
+            background: var(--blue);
+
+            border-radius: 20px;
+        }
+
+        /* FORM */
+
+        .profile-form-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 30px;
+        }
+
+        .form-card-header {
+            margin-bottom: 25px;
+        }
+
+        .form-card-header h2 {
+            font-family: "Manrope", sans-serif;
+            font-size: 21px;
+            margin-bottom: 6px;
+        }
+
+        .form-card-header p {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .profile-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group label {
+            display: block;
+
+            color: var(--text-secondary);
+
+            font-size: 12px;
+            font-weight: 600;
+
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 13px 14px;
+
+            border: 1px solid var(--border-light);
+
+            border-radius: 10px;
+
+            background: #0c0e13;
+
+            color: var(--text);
+
+            font-family: "DM Sans", sans-serif;
+
+            font-size: 13px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+        .form-group textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--blue);
+
+            box-shadow:
+                0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group small {
+            display: block;
+
+            margin-top: 6px;
+
+            color: var(--text-muted);
+
+            font-size: 10px;
+        }
+
+        .save-btn {
+            align-self: flex-end;
+
+            padding: 13px 25px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: var(--blue);
+
+            color: white;
+
+            font-family: "DM Sans", sans-serif;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .save-btn:hover {
+            background: var(--blue-dark);
+            transform: translateY(-2px);
+        }
+
+        .ai-profile-box {
+            margin-top: 25px;
+
+            padding: 20px;
+
+            border: 1px solid rgba(59, 130, 246, 0.2);
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(59, 130, 246, 0.08),
+                    rgba(17, 19, 24, 0.8)
+                );
+        }
+
+        .ai-profile-box h3 {
+            font-family: "Manrope", sans-serif;
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .ai-profile-box p {
+            color: var(--text-secondary);
+            font-size: 12px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .ai-btn {
+            padding: 10px 17px;
+
+            border: 1px solid rgba(59, 130, 246, 0.3);
+
+            border-radius: 8px;
+
+            background: rgba(59, 130, 246, 0.1);
+
+            color: var(--blue-light);
+
+            cursor: pointer;
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 850px) {
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-preview {
+                max-width: 400px;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .profile-container {
+                padding: 25px 15px;
+            }
+
+            .profile-navbar {
+                padding: 0 15px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-form-card {
+                padding: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="profile-page">
+
+
+    <!-- NAVBAR -->
+
+    <nav class="profile-navbar">
+
+        <div class="logo">
+
+            <span class="logo-icon">M</span>
+
+            <span>
+                MSME <strong>Connect</strong>
+            </span>
+
+        </div>
+
+        <a
+            href="dashboard.html"
+            class="nav-login"
+        >
+            ← Dashboard
+        </a>
+
+    </nav>
+
+
+
+    <!-- CONTENT -->
+
+    <main class="profile-container">
+
+
+        <div class="page-heading">
+
+            <h1>
+                My Business
+            </h1>
+
+            <p>
+                Build your digital business identity and make your MSME
+                discoverable to new markets.
+            </p>
+
+        </div>
+
+
+
+        <div class="profile-grid">
+
+
+            <!-- PROFILE PREVIEW -->
+
+            <aside class="profile-preview">
+
+                <div class="business-avatar">
+                    LF
+                </div>
+
+                <h2>
+                    Lakshmi Foods
+                </h2>
+
+                <span class="business-category">
+                    Food & Beverages
+                </span>
+
+                <div class="verification">
+                    ✓ Business profile created
+                </div>
+
+
+                <div class="profile-completion">
+
+                    <div class="completion-header">
+
+                        <span>
+                            Profile completion
+                        </span>
+
+                        <span>
+                            72%
+                        </span>
+
+                    </div>
+
+                    <div class="completion-bar">
+                        <span></span>
+                    </div>
+
+                </div>
+
+
+                <div class="ai-profile-box">
+
+                    <h3>
+                        ✦ AI Profile Generator
+                    </h3>
+
+                    <p>
+                        Turn your basic business information into a
+                        professional business description automatically.
+                    </p>
+
+                    <button
+                        class="ai-btn"
+                        onclick="generateProfile()"
+                    >
+                        Generate with AI
+                    </button>
+
+                </div>
+
+            </aside>
+
+
+
+            <!-- FORM -->
+
+            <section class="profile-form-card">
+
+
+                <div class="form-card-header">
+
+                    <h2>
+                        Business Information
+                    </h2>
+
+                    <p>
+                        Keep your business information accurate and up to date.
+                    </p>
+
+                </div>
+
+
+                <form
+                    class="profile-form"
+                    id="profileForm"
+                >
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label>
+                                Business Name
+                            </label>
+
+                            <input
+                                type="text"
+                                value="Lakshmi Foods"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Business Category
+                            </label>
+
+                            <select>
+
+                                <option selected>
+                                    Food & Beverages
+                                </option>
+
+                                <option>
+                                    Textiles & Clothing
+                                </option>
+
+                                <option>
+                                    Handicrafts
+                                </option>
+
+                                <option>
+                                    Manufacturing
+                                </option>
+
+                                <option>
+                                    Retail
+                                </option>
+
+                                <option>
+                                    Agriculture & Allied
+                                </option>
+
+                                <option>
+                                    Services
+                                </option>
+
+                                <option>
+                                    Technology
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label>
+                                Owner / Representative
+                            </label>
+
+                            <input
+                                type="text"
+                                value="Lakshmi"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Location
+                            </label>
+
+                            <input
+                                type="text"
+                                value="Bengaluru, Karnataka"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label>
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                placeholder="+91 XXXXX XXXXX"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Website
+                            </label>
+
+                            <input
+                                type="url"
+                                placeholder="https://yourbusiness.com"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Business Description
+                        </label>
+
+                        <textarea
+                            id="businessDescription"
+                            placeholder="Describe what your business does, what products you sell and what makes your business unique..."
+                        ></textarea>
+
+                        <small>
+                            This information will be used by the AI assistant
+                            to create your digital business profile.
+                        </small>
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label>
+                                Udyam Registration Number
+                            </label>
+
+                            <input
+                                type="text"
+                                placeholder="Optional"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Business Type
+                            </label>
+
+                            <select>
+
+                                <option>
+                                    Proprietorship
+                                </option>
+
+                                <option>
+                                    Partnership
+                                </option>
+
+                                <option>
+                                    LLP
+                                </option>
+
+                                <option>
+                                    Private Limited
+                                </option>
+
+                                <option>
+                                    Cooperative
+                                </option>
+
+                                <option>
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                    >
+                        Save Business Profile
+                    </button>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+
+<script>
+
+document
+    .getElementById("profileForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        alert("Business profile saved successfully!");
+
+    });
+
+
+function generateProfile() {
+
+    const description =
+        document.getElementById("businessDescription");
+
+    description.value =
+        "Lakshmi Foods is a growing food business based in Bengaluru, Karnataka, offering quality packaged food products to customers and local businesses. The business focuses on delivering reliable products while expanding its digital presence and reaching new markets.";
+
+    alert(
+        "AI profile generated! You can edit it before saving."
+    );
+
+}
+
+</script>
+
+
+</body>
+</html>

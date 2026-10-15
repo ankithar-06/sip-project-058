@@ -1,0 +1,529 @@
+/* =========================================
+   MSME CONNECT AI - AUTH PAGES
+   Premium Business Theme
+========================================= */
+
+.auth-section {
+    min-height: calc(100vh - 80px);
+    padding: 60px 6%;
+    background:
+        radial-gradient(
+            circle at 15% 30%,
+            rgba(59, 130, 246, 0.12),
+            transparent 35%
+        ),
+        var(--bg);
+}
+
+.auth-container {
+    max-width: 1200px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+
+    align-items: center;
+}
+
+
+/* =========================================
+   LEFT SIDE
+========================================= */
+
+.auth-info {
+    padding-right: 20px;
+}
+
+.auth-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 14px;
+
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 30px;
+
+    background: rgba(59, 130, 246, 0.08);
+
+    color: var(--blue-light);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    margin-bottom: 25px;
+}
+
+.auth-badge span {
+    color: var(--gold);
+}
+
+
+.auth-info h1 {
+    font-family: "Manrope", sans-serif;
+
+    font-size: clamp(38px, 4vw, 58px);
+
+    line-height: 1.08;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 24px;
+}
+
+.auth-info h1 span {
+    display: block;
+    color: var(--blue-light);
+}
+
+
+.auth-info > p {
+    color: var(--text-secondary);
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    max-width: 520px;
+
+    margin-bottom: 40px;
+}
+
+
+/* =========================================
+   BENEFITS
+========================================= */
+
+.auth-benefits {
+    display: flex;
+    flex-direction: column;
+
+    gap: 22px;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+}
+
+.benefit-icon {
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: rgba(59, 130, 246, 0.1);
+
+    border: 1px solid rgba(59, 130, 246, 0.2);
+
+    color: var(--blue-light);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.benefit-item h3 {
+    font-size: 15px;
+
+    margin-bottom: 4px;
+}
+
+.benefit-item p {
+    color: var(--text-muted);
+
+    font-size: 13px;
+
+    margin: 0;
+}
+
+
+/* =========================================
+   REGISTER CARD
+========================================= */
+
+.auth-card {
+    background: rgba(17, 19, 24, 0.92);
+
+    border: 1px solid var(--border-light);
+
+    border-radius: 22px;
+
+    padding: 38px;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.35);
+
+    backdrop-filter: blur(15px);
+
+    animation: authCardAppear 0.6s ease;
+}
+
+@keyframes authCardAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+.auth-card-header {
+    margin-bottom: 28px;
+}
+
+.auth-card-header h2 {
+    font-family: "Manrope", sans-serif;
+
+    font-size: 28px;
+
+    margin-bottom: 8px;
+}
+
+.auth-card-header p {
+    color: var(--text-secondary);
+
+    font-size: 14px;
+
+    margin: 0;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+
+.form-group label {
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: var(--text-secondary);
+
+    margin-bottom: 8px;
+}
+
+
+.optional {
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+    font-weight: 400;
+}
+
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 14px;
+
+    border-radius: 10px;
+
+    border: 1px solid var(--border-light);
+
+    background: #0c0e13;
+
+    color: var(--text);
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.25s ease;
+}
+
+
+.form-group input::placeholder {
+    color: #555b67;
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color: var(--blue);
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+
+.form-group select {
+    cursor: pointer;
+}
+
+
+.form-group select option {
+    background: #111318;
+
+    color: white;
+}
+
+
+.form-group small {
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   TERMS
+========================================= */
+
+.terms {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    margin: 5px 0 20px;
+}
+
+.terms input {
+    margin-top: 3px;
+
+    accent-color: var(--blue);
+
+    cursor: pointer;
+}
+
+.terms label {
+    color: var(--text-muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.auth-btn {
+    width: 100%;
+
+    height: 50px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        var(--blue),
+        var(--blue-dark)
+    );
+
+    color: white;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    transition: 0.25s ease;
+
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, 0.2);
+}
+
+.auth-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 30px rgba(37, 99, 235, 0.3);
+}
+
+.auth-btn span {
+    font-size: 18px;
+}
+
+
+/* =========================================
+   LOGIN LINK
+========================================= */
+
+.auth-switch {
+    text-align: center;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+
+    margin: 22px 0 0;
+}
+
+.auth-switch a {
+    color: var(--blue-light);
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    margin-left: 4px;
+}
+
+.auth-switch a:hover {
+    color: white;
+}
+
+
+/* =========================================
+   AUTH FOOTER
+========================================= */
+
+.auth-footer {
+    text-align: center;
+
+    padding: 20px;
+
+    border-top: 1px solid var(--border);
+
+    background: var(--bg);
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   NAV LOGIN
+========================================= */
+
+.nav-login {
+    color: var(--text-secondary);
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.nav-login:hover {
+    color: white;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .auth-container {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+
+        max-width: 650px;
+    }
+
+    .auth-info {
+        padding-right: 0;
+
+        text-align: center;
+    }
+
+    .auth-info > p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .auth-benefits {
+        text-align: left;
+
+        max-width: 500px;
+
+        margin: auto;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .auth-section {
+        padding: 35px 18px;
+    }
+
+    .auth-card {
+        padding: 25px 20px;
+
+        border-radius: 16px;
+    }
+
+    .auth-info h1 {
+        font-size: 36px;
+
+        letter-spacing: -1px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+    .navbar {
+        padding: 15px 20px;
+    }
+
+}
