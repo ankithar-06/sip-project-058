@@ -1624,4 +1624,40 @@ body::after {
 
         margin-top: 50px;
     }
+    
+/* MSME Connect AI - Live database section */
+#msme-live-data {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 24px;
+}
+
+#msme-live-data h2 {
+    margin: 28px 0 16px;
+}
+
+#business-list,
+#product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.msme-data-card {
+    padding: 18px;
+    border: 1px solid #d7dce2;
+    border-radius: 12px;
+    background: #fff;
+    color: #222;
+    overflow-wrap: anywhere;
+}
+
+.msme-data-card h3 {
+    margin-top: 0;
+}
+
+.msme-data-card p {
+    line-height: 1.5;
+}
+
 }
