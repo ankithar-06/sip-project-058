@@ -30,7 +30,7 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# Enable CORS for React frontend (Vite default port 5173, preview 4173, legacy 5500)
+# Enable CORS for React frontend (Vite default port 5173, preview 4173, production deployments)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -43,6 +43,7 @@ app.add_middleware(
         "http://localhost:5500",
         "http://127.0.0.1:5500",
     ],
+    allow_origin_regex=r"^https?://.*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
