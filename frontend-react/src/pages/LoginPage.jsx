@@ -51,7 +51,7 @@ const LoginPage = () => {
   const fillDemoAccount = () => {
     setFormData({
       email: 'demo@msmeconnect.in',
-      password: 'password123',
+      password: 'Demo@2026!',
     });
     setError('');
   };
