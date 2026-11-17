@@ -3,7 +3,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Building2, Lock, Mail, User, ArrowRight, ShieldCheck, AlertCircle } from 'lucide-react';
+import PasswordInput from '../components/PasswordInput';
+import PasswordRequirements from '../components/PasswordRequirements';
+import { validatePassword } from '../utils/passwordValidator';
+import {
+  Building2,
+  Mail,
+  User,
+  ArrowRight,
+  ShieldCheck,
+  AlertCircle,
+  CheckCircle2,
+} from 'lucide-react';
 
 const RegisterPage = () => {
   const { register } = useAuth();
@@ -13,32 +24,58 @@ const RegisterPage = () => {
     name: '',
     email: '',
     password: '',
+    confirmPassword: '',
   });
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordStatus = validatePassword(formData.password);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters long.');
+    // Field-level checks
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+
+    if (!trimmedName || trimmedName.length < 2) {
+      setError('Please provide your full name (at least 2 characters).');
+      return;
+    }
+
+    if (!trimmedEmail || !emailRegex.test(trimmedEmail)) {
+      setError('Please provide a valid email address (e.g. name@domain.com).');
+      return;
+    }
+
+    if (!passwordStatus.isValid) {
+      setError('Password does not meet all security requirements. Please check the requirements below.');
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match. Please ensure both password fields match exactly.');
       return;
     }
 
     setSubmitting(true);
     try {
-      await register(formData.name, formData.email, formData.password);
+      await register(trimmedName, trimmedEmail, formData.password);
       // Successfully registered and logged in -> direct to profile setup
       navigate('/dashboard/profile/edit');
     } catch (err) {
       console.error(err);
       const detail = err.response?.data?.detail;
-      setError(typeof detail === 'string' ? detail : 'Registration failed. Please try again.');
+      setError(typeof detail === 'string' ? detail : 'Registration failed. Please check your information and try again.');
     } finally {
       setSubmitting(false);
     }
   };
+
+  const passwordsMatch = formData.confirmPassword.length > 0 && formData.password === formData.confirmPassword;
+  const passwordsMismatch = formData.confirmPassword.length > 0 && formData.password !== formData.confirmPassword;
 
   return (
     <div className="min-h-screen bg-slate-900 text-white flex flex-col">
@@ -66,9 +103,10 @@ const RegisterPage = () => {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Full Name */}
               <div>
                 <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
-                  Full Name / Owner Name
+                  Full Name / Owner Name *
                 </label>
                 <div className="relative">
                   <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
@@ -78,14 +116,16 @@ const RegisterPage = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Ramesh Kumar"
+                    autoComplete="name"
                     className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
                   />
                 </div>
               </div>
 
+              {/* Email Address */}
               <div>
                 <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
-                  Email Address
+                  Email Address *
                 </label>
                 <div className="relative">
                   <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
@@ -95,33 +135,66 @@ const RegisterPage = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="ramesh@example.com"
+                    autoComplete="email"
                     className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
                   />
                 </div>
               </div>
 
+              {/* Password Field with Show/Hide toggle */}
               <div>
                 <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
-                  Create Password (min 6 characters)
+                  Create Password *
                 </label>
-                <div className="relative">
-                  <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
-                  <input
-                    type="password"
-                    required
-                    value={formData.password}
-                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    placeholder="••••••••"
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-                  />
-                </div>
+                <PasswordInput
+                  id="register-password"
+                  name="password"
+                  required
+                  value={formData.password}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  placeholder="Min 8 characters with upper, lower, number, special"
+                  autoComplete="new-password"
+                />
+
+                {/* Password Requirements Checklist and Strength Meter */}
+                <PasswordRequirements password={formData.password} showOnlyWhenTyping={true} />
+              </div>
+
+              {/* Confirm Password Field with Show/Hide toggle */}
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                  Confirm Password *
+                </label>
+                <PasswordInput
+                  id="register-confirm-password"
+                  name="confirmPassword"
+                  required
+                  value={formData.confirmPassword}
+                  onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                  placeholder="Re-enter password"
+                  autoComplete="new-password"
+                />
+
+                {/* Real-time Matching Feedback */}
+                {passwordsMatch && (
+                  <p className="mt-1.5 text-[11px] text-emerald-400 flex items-center space-x-1">
+                    <CheckCircle2 className="w-3 h-3 shrink-0" />
+                    <span>Passwords match</span>
+                  </p>
+                )}
+                {passwordsMismatch && (
+                  <p className="mt-1.5 text-[11px] text-red-400 flex items-center space-x-1">
+                    <AlertCircle className="w-3 h-3 shrink-0" />
+                    <span>Passwords do not match yet</span>
+                  </p>
+                )}
               </div>
 
               <div className="pt-2">
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-md shadow-blue-600/30 flex items-center justify-center space-x-2 transition-all disabled:opacity-50"
+                  className="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-md shadow-blue-600/30 flex items-center justify-center space-x-2 transition-all disabled:opacity-50 cursor-pointer"
                 >
                   {submitting ? (
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>

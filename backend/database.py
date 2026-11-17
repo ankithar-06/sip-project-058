@@ -20,6 +20,7 @@ collaborations_collection = db["collaborations"]
 marketing_collection = db["marketing_content"]
 opportunities_collection = db["opportunities"]
 analytics_collection = db["analytics"]
+password_resets_collection = db["password_resets"]
 
 
 def init_db_indexes():
@@ -39,6 +40,8 @@ def init_db_indexes():
         collaborations_collection.create_index([("sender_business_id", ASCENDING)])
         collaborations_collection.create_index([("receiver_business_id", ASCENDING)])
         analytics_collection.create_index([("business_id", ASCENDING)], unique=True)
+        password_resets_collection.create_index([("email", ASCENDING)])
+        password_resets_collection.create_index([("created_at", ASCENDING)])
         print("MongoDB indexes verified successfully.")
     except Exception as e:
         print(f"Warning initializing MongoDB indexes: {e}")

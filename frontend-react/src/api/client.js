@@ -42,6 +42,10 @@ export const authApi = {
   login: (data) => api.post('/api/users/login', data),
   getMe: () => api.get('/api/users/me'),
   logout: () => api.post('/api/users/logout'),
+  forgotPassword: (email) => api.post('/api/users/forgot-password', { email }),
+  verifyOtp: (email, otp) => api.post('/api/users/verify-otp', { email, otp }),
+  resetPassword: (email, reset_token, new_password) =>
+    api.post('/api/users/reset-password', { email, reset_token, new_password }),
 };
 
 // Business APIs
